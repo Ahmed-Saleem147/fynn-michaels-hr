@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fynnmicheals.com/sitemap.xml
+Sitemap: https://fynn-michealshrsolutions.com/sitemap.xml

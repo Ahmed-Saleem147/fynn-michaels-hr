@@ -15,10 +15,10 @@ ROOT = Path(__file__).parent
 SRC = ROOT / "src"
 
 # ---------------------------------------------------------------- details
-SITE_URL = "https://fynnmicheals.com"   # live domain (used for canonical links and sitemap)
+SITE_URL = "https://fynn-michealshrsolutions.com"   # live domain (used for canonical links and sitemap)
 NAME = "Fynn-Micheals HR Solutions"
 TAGLINE = "People. Performance. Progress."
-# Switch to "hrsolutions@fynnmicheals.com" once the domain's email routing is set up.
+# Switch to "hrsolutions@fynn-michealshrsolutions.com" once the domain's email routing is set up.
 EMAIL = "fynnmichealshrsolutions@gmail.com"
 PHONE_DISPLAY = "+233 24 444 6466"
 PHONE_LINK = "+233244446466"
