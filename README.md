@@ -17,18 +17,12 @@ After editing, rebuild the pages and commit the result:
 
 ## Pages
 
-| File | SEO title |
-| --- | --- |
-| index.html | HR Consulting & Outsourcing for Startups in Ghana |
-| startup-hr.html | Startup HR Services & HR Setup in Ghana |
-| outsourced-hr.html | Outsourced HR Services for Small Businesses |
-| recruitment.html | Recruitment & Talent Acquisition Services in Ghana |
-| hr-policies.html | HR Policies, Contracts & Employee Handbooks |
-| hr-audit.html | HR Audit & Consulting Services for Businesses |
-| about.html | About Fynn-Micheals HR Solutions |
-| contact.html | Contact an HR Consultant in Ghana |
+Home, seven service pages (Startup HR, Outsourced HR, Recruitment, HR Audit, Performance
+Management, HR Policies & Documentation, HR Support Beyond Borders), About, Resource Centre,
+FAQs, Confidentiality and Contact. SEO titles and descriptions for each are in `build.py`.
 
-`sitemap.xml` and `robots.txt` are generated too.
+`sitemap.xml` and `robots.txt` are generated too. The FAQ page also gets FAQ structured data
+for search engines, built from its questions.
 
 ## Preview locally
 
@@ -38,7 +32,6 @@ then visit http://localhost:5190.
 
 ## Still to do before launch
 
-- Experience figures on the home page (years, clients, policies, satisfaction) are placeholders
 - Confirm the city and office hours in `build.py`
 - Contact form opens the visitor's email app; connect a form service to receive enquiries directly
 - Photos load from Unsplash; save local copies before launch

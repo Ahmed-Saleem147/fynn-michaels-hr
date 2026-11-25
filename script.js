@@ -8,29 +8,30 @@
     nav.classList.toggle('open', !open);
   });
 
-  // Services dropdown (click / tap; hover also opens it on desktop via CSS)
-  var subToggle = document.querySelector('.sub-toggle');
-  var subWrap = document.querySelector('.has-sub');
-  if (subToggle) {
-    subToggle.addEventListener('click', function (e) {
+  // Dropdown menus (click / tap; hover also opens them on desktop via CSS)
+  var subWraps = Array.prototype.slice.call(document.querySelectorAll('.has-sub'));
+  var closeSub = function (wrap) {
+    wrap.classList.remove('open');
+    wrap.querySelector('.sub-toggle').setAttribute('aria-expanded', 'false');
+  };
+  subWraps.forEach(function (wrap) {
+    var btn = wrap.querySelector('.sub-toggle');
+    btn.addEventListener('click', function (e) {
       e.stopPropagation();
-      var open = subToggle.getAttribute('aria-expanded') === 'true';
-      subToggle.setAttribute('aria-expanded', String(!open));
-      subWrap.classList.toggle('open', !open);
-    });
-    document.addEventListener('click', function (e) {
-      if (!subWrap.contains(e.target)) {
-        subToggle.setAttribute('aria-expanded', 'false');
-        subWrap.classList.remove('open');
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      subWraps.forEach(closeSub);
+      if (!open) {
+        btn.setAttribute('aria-expanded', 'true');
+        wrap.classList.add('open');
       }
     });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        subToggle.setAttribute('aria-expanded', 'false');
-        subWrap.classList.remove('open');
-      }
-    });
-  }
+  });
+  document.addEventListener('click', function (e) {
+    subWraps.forEach(function (wrap) { if (!wrap.contains(e.target)) closeSub(wrap); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') subWraps.forEach(closeSub);
+  });
 
   // Close the mobile menu after following an in-page link
   nav.addEventListener('click', function (e) {
@@ -48,7 +49,7 @@
   onScroll();
 
   // Fade content in as it scrolls into view
-  var targets = document.querySelectorAll('.section-head, .card, .reasons li, .circle-art, .stats li, .about-img, .about-text, .contact-cards li, .contact-form, .service-main, .service-side, .mini-links a');
+  var targets = document.querySelectorAll('.section-head, .card, .reasons li, .circle-art, .stats li, .about-img, .about-text, .contact-cards li, .contact-form, .service-main, .service-side, .mini-links a, .steps li, .borders-band, .faq details, .guide, .partners li');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -80,14 +81,15 @@
         note.textContent = 'Please fill in the highlighted fields.';
         return;
       }
-      var d = new FormData(form);
-      var body = 'Name: ' + d.get('name') +
-        '\nCompany: ' + (d.get('company') || '-') +
-        '\nEmail: ' + d.get('email') +
-        '\nService: ' + (d.get('topic') || '-') +
-        '\n\n' + d.get('message');
+      var lines = [];
+      var message = '';
+      new FormData(form).forEach(function (value, key) {
+        if (key === 'Message') message = value;
+        else lines.push(key + ': ' + (String(value).trim() || '-'));
+      });
+      var body = lines.join('\n') + '\n\n' + message;
       window.location.href = 'mailto:' + to + '?subject=' +
-        encodeURIComponent('Enquiry from ' + d.get('name')) +
+        encodeURIComponent('Website enquiry from ' + document.getElementById('name').value.trim()) +
         '&body=' + encodeURIComponent(body);
       note.textContent = 'Thank you. Your email app should open with the message ready to send.';
     });

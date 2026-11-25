@@ -9,7 +9,9 @@ and commit the regenerated .html files in the project root.
 """
 from datetime import date
 from pathlib import Path
+from urllib.parse import quote
 import json
+import re
 
 ROOT = Path(__file__).parent
 SRC = ROOT / "src"
@@ -25,12 +27,22 @@ PHONE_LINK = "+233244446466"
 LOCATION = "Accra, Ghana"                  # PLACEHOLDER: confirm city
 HOURS = "Mon &ndash; Fri, 8:00 &ndash; 17:00"  # PLACEHOLDER
 
+WHATSAPP = "233244446466"                  # number in international format, no +
+WHATSAPP_TEXT = "Hello Fynn-Micheals HR Solutions, I'd like to enquire about your HR services."
+
 SERVICES = [
     ("startup-hr.html", "Startup HR Foundation"),
     ("outsourced-hr.html", "Outsourced HR Department"),
     ("recruitment.html", "Recruitment &amp; Talent Acquisition"),
     ("hr-audit.html", "HR Audit &amp; Business Advisory"),
-    ("hr-policies.html", "HR Policies &amp; Contracts"),
+    ("performance-management.html", "Performance Management"),
+    ("hr-policies.html", "HR Policies &amp; Documentation"),
+    ("international-hr.html", "HR Support Beyond Borders"),
+]
+
+RESOURCES = [
+    ("resources.html", "Resource Centre"),
+    ("faq.html", "FAQs"),
 ]
 
 # file, SEO title, meta description, nav group
@@ -57,23 +69,48 @@ PAGES = [
      "services"),
     ("hr-policies.html",
      "HR Policies, Contracts &amp; Employee Handbooks | Fynn-Micheals",
-     "Clear, compliant HR policies, employment contracts and employee handbooks written for "
-     "businesses in Ghana and aligned with the Labour Act.",
+     "Employee handbooks, HR policies, employment documents, leave, disciplinary and grievance "
+     "procedures developed for your business in accordance with the Labour Act.",
      "services"),
     ("hr-audit.html",
      "HR Audit &amp; Consulting Services for Businesses | Fynn-Micheals",
      "HR health checks, workforce assessments, HR process reviews, productivity systems and "
      "organisational restructuring for businesses facing people-management problems.",
      "services"),
+    ("performance-management.html",
+     "Performance Management Systems &amp; KPI Development | Fynn-Micheals",
+     "KPI development, performance appraisal systems, review templates, improvement plans and "
+     "goal-setting frameworks that connect individual roles to business goals.",
+     "services"),
+    ("international-hr.html",
+     "International &amp; Remote HR Support | Fynn-Micheals",
+     "HR support beyond borders: HR consulting, recruitment coordination, HR documentation and "
+     "remote people-management support for businesses in Ghana and international clients.",
+     "services"),
     ("about.html",
      "About Fynn-Micheals HR Solutions",
-     "Fynn-Micheals HR Solutions is a Ghana-based HR consultancy helping startups and small "
-     "businesses build fair, workable HR. People. Performance. Progress.",
+     "Fynn-Micheals HR Solutions partners with business owners to simplify HR, strengthen "
+     "workplace structures and create the foundation for sustainable growth.",
+     "about"),
+    ("resources.html",
+     "HR Resource Centre for Small Businesses | Fynn-Micheals",
+     "Practical HR guidance for startups and small businesses: the HR basics to put in place, "
+     "the documents every employer needs and signs it's time for an HR review.",
+     "resources"),
+    ("faq.html",
+     "HR Services FAQs | Fynn-Micheals HR Solutions",
+     "Answers to common questions about startup HR, outsourced HR, recruitment, HR policies, "
+     "international clients, fees and getting started with Fynn-Micheals HR Solutions.",
+     "resources"),
+    ("confidentiality.html",
+     "Confidentiality Statement | Fynn-Micheals HR Solutions",
+     "How Fynn-Micheals HR Solutions protects the business and employee information shared "
+     "with us during enquiries and engagements.",
      "about"),
     ("contact.html",
      "Contact an HR Consultant in Ghana | Fynn-Micheals",
-     "Speak to an HR consultant at Fynn-Micheals HR Solutions in Ghana. Call, email or send "
-     "an enquiry and we'll reply within one working day.",
+     "Speak to an HR consultant at Fynn-Micheals HR Solutions in Ghana. Call, WhatsApp, email "
+     "or send an enquiry and we'll reply within one working day.",
      "contact"),
 ]
 
@@ -93,10 +130,22 @@ def header(current_file, group):
         return ' class="active"' if g == group else ""
 
     active = ' class="active"'
-    sub = "\n".join(
-        f'            <li><a href="{f}"{active if f == current_file else ""}>{label}</a></li>'
-        for f, label in SERVICES
-    )
+
+    def sub_items(items):
+        return "\n".join(
+            f'            <li><a href="{f}"{active if f == current_file else ""}>{label}</a></li>'
+            for f, label in items
+        )
+
+    def dropdown(label, items, grp):
+        return f"""        <div class="has-sub">
+          <button class="sub-toggle{" active" if group == grp else ""}" aria-expanded="false">{label}
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <ul class="sub-menu">
+{sub_items(items)}
+          </ul>
+        </div>"""
     return f"""  <div class="topbar">
     <div class="wrap topbar-inner">
       <div class="topbar-info">
@@ -124,15 +173,9 @@ def header(current_file, group):
 
       <nav class="site-nav" id="site-nav" aria-label="Main">
         <a href="index.html"{cls("home")}>Home</a>
-        <div class="has-sub">
-          <button class="sub-toggle{" active" if group == "services" else ""}" aria-expanded="false">Services
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <ul class="sub-menu">
-{sub}
-          </ul>
-        </div>
+{dropdown("Services", SERVICES, "services")}
         <a href="about.html"{cls("about")}>About</a>
+{dropdown("Resources", RESOURCES, "resources")}
         <a href="contact.html"{cls("contact")}>Contact</a>
         <a href="contact.html" class="btn btn-gold btn-sm">Book a Consultation</a>
       </nav>
@@ -154,7 +197,7 @@ def footer():
           </span>
         </div>
         <p class="footer-tagline">{TAGLINE}</p>
-        <p class="footer-about">HR consulting and outsourcing for startups and growing businesses in Ghana.</p>
+        <p class="footer-about">HR consulting and outsourcing for startups and growing businesses in Ghana and beyond.</p>
       </div>
       <div>
         <h4>Services</h4>
@@ -165,8 +208,10 @@ def footer():
       <div>
         <h4>Company</h4>
         <ul>
-          <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Us</a></li>
+          <li><a href="resources.html">Resource Centre</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="confidentiality.html">Confidentiality</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
@@ -175,6 +220,7 @@ def footer():
         <ul>
           <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
           <li><a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a></li>
+          <li><a href="{whatsapp_link()}" target="_blank" rel="noopener">WhatsApp us</a></li>
           <li>{LOCATION}</li>
         </ul>
       </div>
@@ -186,6 +232,35 @@ def footer():
 """
 
 
+def whatsapp_link():
+    return f"https://wa.me/{WHATSAPP}?text={quote(WHATSAPP_TEXT)}"
+
+
+ICON_WHATSAPP = ('<svg viewBox="0 0 32 32" aria-hidden="true" class="wa-icon"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.9 5.2 2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5l-.5-.3z"/></svg>')
+
+
+def other_services(current_file):
+    return "\n".join(
+        f'          <a href="{f}">{label} <span aria-hidden="true">&rarr;</span></a>'
+        for f, label in SERVICES if f != current_file
+    )
+
+
+def faq_schema(body):
+    pairs = re.findall(r"<summary>(.*?)</summary>\s*<div class=\"faq-a\">(.*?)</div>", body, re.S)
+    clean = lambda s: re.sub(r"<[^>]+>", "", s).replace("&amp;", "&").strip()
+    data = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": clean(q),
+             "acceptedAnswer": {"@type": "Answer", "text": " ".join(clean(a).split())}}
+            for q, a in pairs
+        ],
+    }
+    return f'  <script type="application/ld+json">{json.dumps(data)}</script>\n'
+
+
 def schema():
     data = {
         "@context": "https://schema.org",
@@ -194,6 +269,7 @@ def schema():
         "slogan": TAGLINE,
         "url": SITE_URL + "/",
         "email": EMAIL,
+        "telephone": PHONE_LINK,
         "areaServed": "Ghana",
         "address": {"@type": "PostalAddress", "addressCountry": "GH"},
         "description": "HR consulting and outsourcing for startups and small businesses in Ghana.",
@@ -211,7 +287,13 @@ def render(file, title, desc, group):
                 .replace("{{ICON_MAIL}}", ICON_MAIL)
                 .replace("{{ICON_PHONE}}", ICON_PHONE)
                 .replace("{{ICON_PIN}}", ICON_PIN)
-                .replace("{{ICON_CLOCK}}", ICON_CLOCK))
+                .replace("{{ICON_CLOCK}}", ICON_CLOCK)
+                .replace("{{ICON_WHATSAPP}}", ICON_WHATSAPP)
+                .replace("{{WHATSAPP_LINK}}", whatsapp_link())
+                .replace("{{OTHER_SERVICES}}", other_services(file)))
+    head_extra = schema() if file == "index.html" else ""
+    if file == "faq.html":
+        head_extra = faq_schema(body)
     url = page_url(file)
     plain_title = title.replace("&amp;", "&")
     return f"""<!doctype html>
@@ -234,7 +316,7 @@ def render(file, title, desc, group):
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Mulish:wght@400;500;600&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-{schema() if file == "index.html" else ""}</head>
+{head_extra}</head>
 <body>
 
 {header(file, group)}
@@ -243,6 +325,11 @@ def render(file, title, desc, group):
   </main>
 
 {footer()}
+  <a class="wa-float" href="{whatsapp_link()}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    {ICON_WHATSAPP}
+    <span class="wa-label">WhatsApp us</span>
+  </a>
+
   <script src="script.js"></script>
 </body>
 </html>

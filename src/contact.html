@@ -2,62 +2,110 @@
       <div class="wrap">
         <p class="crumbs"><a href="index.html">Home</a> / <span>Contact</span></p>
         <h1>Contact an HR Consultant in Ghana</h1>
-        <p class="page-hero-text">Tell us what you need. We reply within one working day.</p>
+        <p class="page-hero-text">Tell us about your business and HR needs. We reply within one working day.</p>
       </div>
     </section>
 
     <section class="section" id="contact">
       <div class="wrap contact-grid">
-        <ul class="contact-cards">
-          <li>
-            <span class="icon icon-sm">{{ICON_MAIL}}</span>
-            <div><h3>Email</h3><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
-          </li>
-          <li>
-            <span class="icon icon-sm">{{ICON_PHONE}}</span>
-            <div><h3>Phone</h3><a href="tel:{{PHONE_LINK}}">{{PHONE_DISPLAY}}</a></div>
-          </li>
-          <li>
-            <span class="icon icon-sm">{{ICON_PIN}}</span>
-            <div><h3>Location</h3><span>{{LOCATION}}</span></div>
-          </li>
-          <li>
-            <span class="icon icon-sm">{{ICON_CLOCK}}</span>
-            <div><h3>Hours</h3><span>{{HOURS}}</span></div>
-          </li>
-        </ul>
+        <div>
+          <ul class="contact-cards">
+            <li>
+              <span class="icon icon-sm icon-wa">{{ICON_WHATSAPP}}</span>
+              <div><h3>WhatsApp</h3><a href="{{WHATSAPP_LINK}}" target="_blank" rel="noopener">Chat with us on WhatsApp</a></div>
+            </li>
+            <li>
+              <span class="icon icon-sm">{{ICON_PHONE}}</span>
+              <div><h3>Phone</h3><a href="tel:{{PHONE_LINK}}">{{PHONE_DISPLAY}}</a></div>
+            </li>
+            <li>
+              <span class="icon icon-sm">{{ICON_MAIL}}</span>
+              <div><h3>Email</h3><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
+            </li>
+            <li>
+              <span class="icon icon-sm">{{ICON_PIN}}</span>
+              <div><h3>Location</h3><span>{{LOCATION}}</span></div>
+            </li>
+            <li>
+              <span class="icon icon-sm">{{ICON_CLOCK}}</span>
+              <div><h3>Hours</h3><span>{{HOURS}}</span></div>
+            </li>
+          </ul>
+          <div class="confidential-note">
+            <strong>Confidential.</strong> Everything you share with us is treated in confidence.
+            <a href="confidentiality.html" class="text-link">Read our confidentiality statement</a>
+          </div>
+        </div>
 
         <form class="contact-form" id="contact-form" data-email="{{EMAIL}}" novalidate>
-          <div class="field">
-            <label for="name">Full Name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required>
+          <div class="form-head full">
+            <h2>Client Enquiry Form</h2>
+            <p>Give us a brief description of your business and HR needs. We'll discuss your requirements, identify the right service and provide a proposed scope and fee.</p>
           </div>
           <div class="field">
-            <label for="company">Company</label>
-            <input id="company" name="company" type="text" autocomplete="organization">
+            <label for="name">Full Name *</label>
+            <input id="name" name="Name" type="text" autocomplete="name" required>
           </div>
           <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required>
+            <label for="company">Business Name</label>
+            <input id="company" name="Business" type="text" autocomplete="organization">
           </div>
           <div class="field">
-            <label for="topic">Service</label>
-            <select id="topic" name="topic">
+            <label for="email">Email *</label>
+            <input id="email" name="Email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone / WhatsApp</label>
+            <input id="phone" name="Phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="size">Number of Employees</label>
+            <select id="size" name="Employees">
+              <option value="">Select</option>
+              <option>Not hiring yet</option>
+              <option>1 &ndash; 5</option>
+              <option>6 &ndash; 20</option>
+              <option>21 &ndash; 50</option>
+              <option>51 &ndash; 200</option>
+              <option>More than 200</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="location">Business Location</label>
+            <select id="location" name="Location">
+              <option value="">Select</option>
+              <option>Ghana</option>
+              <option>Outside Ghana</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="topic">Service of Interest</label>
+            <select id="topic" name="Service">
               <option value="">Select a service</option>
               <option>Startup HR Foundation</option>
               <option>Outsourced HR Department</option>
               <option>Recruitment &amp; Talent Acquisition</option>
               <option>HR Audit &amp; Business Advisory</option>
-              <option>HR Policies &amp; Contracts</option>
-              <option>Other</option>
+              <option>Performance Management</option>
+              <option>HR Policies &amp; Documentation</option>
+              <option>HR Support Beyond Borders</option>
+              <option>Not sure yet</option>
             </select>
           </div>
           <div class="field full">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
+            <label for="message">How can we help? *</label>
+            <textarea id="message" name="Message" rows="5" required></textarea>
+          </div>
+          <div class="field full">
+            <span class="field-label">Preferred way to reach you</span>
+            <div class="radio-row">
+              <label><input type="radio" name="Preferred contact" value="Email" checked> Email</label>
+              <label><input type="radio" name="Preferred contact" value="Phone call"> Phone call</label>
+              <label><input type="radio" name="Preferred contact" value="WhatsApp"> WhatsApp</label>
+            </div>
           </div>
           <div class="form-foot full">
-            <button type="submit" class="btn btn-gold">Send Message <span aria-hidden="true">&rarr;</span></button>
+            <button type="submit" class="btn btn-gold">Send Enquiry <span aria-hidden="true">&rarr;</span></button>
             <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
           </div>
         </form>
