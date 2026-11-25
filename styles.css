@@ -211,7 +211,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   position: relative;
   background:
     linear-gradient(90deg, rgba(10,10,10,.88) 0%, rgba(10,10,10,.65) 45%, rgba(10,10,10,.15) 100%),
-    url("https://images.unsplash.com/photo-1758518730162-09a142505bfd?auto=format&fit=crop&w=2000&q=80") center / cover no-repeat;
+    url("https://images.unsplash.com/photo-1739298061707-cefee19941b7?auto=format&fit=crop&w=2000&q=80") center / cover no-repeat;
   color: var(--white);
 }
 .hero-inner { padding: 140px var(--gutter) 150px; }
