@@ -40,6 +40,5 @@ then visit http://localhost:5190.
 
 - Experience figures on the home page (years, clients, policies, satisfaction) are placeholders
 - Confirm the city and office hours in `build.py`
-- Switch `EMAIL` in `build.py` to hrsolutions@fynn-michealshrsolutions.com once domain email is set up
 - Contact form opens the visitor's email app; connect a form service to receive enquiries directly
 - Photos load from Unsplash; save local copies before launch

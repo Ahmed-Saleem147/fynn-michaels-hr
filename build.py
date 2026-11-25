@@ -18,8 +18,8 @@ SRC = ROOT / "src"
 SITE_URL = "https://fynn-michealshrsolutions.com"   # live domain (used for canonical links and sitemap)
 NAME = "Fynn-Micheals HR Solutions"
 TAGLINE = "People. Performance. Progress."
-# Switch to "hrsolutions@fynn-michealshrsolutions.com" once the domain's email routing is set up.
-EMAIL = "fynnmichealshrsolutions@gmail.com"
+# Forwards to fynnmichealshrsolutions@gmail.com via Cloudflare Email Routing.
+EMAIL = "hrsolutions@fynn-michealshrsolutions.com"
 PHONE_DISPLAY = "+233 24 444 6466"
 PHONE_LINK = "+233244446466"
 LOCATION = "Accra, Ghana"                  # PLACEHOLDER: confirm city
