@@ -81,17 +81,52 @@
         note.textContent = 'Please fill in the highlighted fields.';
         return;
       }
+      var data = {};
       var lines = [];
-      var message = '';
       new FormData(form).forEach(function (value, key) {
-        if (key === 'Message') message = value;
-        else lines.push(key + ': ' + (String(value).trim() || '-'));
+        value = String(value).trim();
+        data[key] = value;
+        if (key !== 'Message' && key !== '_honey') lines.push(key + ': ' + (value || '-'));
       });
-      var body = lines.join('\n') + '\n\n' + message;
-      window.location.href = 'mailto:' + to + '?subject=' +
-        encodeURIComponent('Website enquiry from ' + document.getElementById('name').value.trim()) +
-        '&body=' + encodeURIComponent(body);
-      note.textContent = 'Thank you. Your email app should open with the message ready to send.';
+      var who = document.getElementById('name').value.trim();
+      var subject = 'Website enquiry from ' + who;
+
+      // Fallback: open the visitor's email app with the enquiry filled in.
+      var openMail = function () {
+        window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) +
+          '&body=' + encodeURIComponent(lines.join('\n') + '\n\n' + (data.Message || ''));
+        note.textContent = 'We could not send the form directly, so your email app has opened with the message ready to send.';
+      };
+
+      var endpoint = form.getAttribute('data-endpoint');
+      if (!endpoint || !window.fetch) { openMail(); return; }
+
+      data._subject = subject;
+      data._template = 'table';
+      data._captcha = 'false';
+      if (data.Email) data._replyto = data.Email;
+
+      var button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      note.textContent = 'Sending...';
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (res) { return res.json().then(function (j) { return { ok: res.ok, body: j }; }); })
+        .then(function (r) {
+          if (r.ok && String(r.body.success) === 'true') {
+            form.reset();
+            note.textContent = 'Thank you, ' + who + '. Your enquiry has been sent and we will reply within one working day.';
+            note.classList.add('ok');
+          } else {
+            openMail();
+          }
+        })
+        .catch(openMail)
+        .then(function () { button.disabled = false; });
     });
   }
 

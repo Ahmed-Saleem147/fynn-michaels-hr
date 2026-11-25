@@ -27,7 +27,10 @@ PHONE_LINK = "+233244446466"
 LOCATION = "Accra, Ghana"                  # PLACEHOLDER: confirm city
 HOURS = "Mon &ndash; Fri, 8:00 &ndash; 17:00"  # PLACEHOLDER
 
-WHATSAPP = "233244446466"                  # number in international format, no +
+# Enquiry form is delivered by FormSubmit (formsubmit.co) to EMAIL. After the one-time
+# activation, FormSubmit emails a random alias; it can replace EMAIL in this URL.
+FORM_ENDPOINT = "https://formsubmit.co/ajax/" + EMAIL
+WHATSAPP = "233244446466"                 # number in international format, no +
 WHATSAPP_TEXT = "Hello Fynn-Micheals HR Solutions, I'd like to enquire about your HR services."
 
 SERVICES = [
@@ -290,6 +293,7 @@ def render(file, title, desc, group):
                 .replace("{{ICON_CLOCK}}", ICON_CLOCK)
                 .replace("{{ICON_WHATSAPP}}", ICON_WHATSAPP)
                 .replace("{{WHATSAPP_LINK}}", whatsapp_link())
+                .replace("{{FORM_ENDPOINT}}", FORM_ENDPOINT)
                 .replace("{{OTHER_SERVICES}}", other_services(file)))
     head_extra = schema() if file == "index.html" else ""
     if file == "faq.html":

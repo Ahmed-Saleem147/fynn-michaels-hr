@@ -629,6 +629,10 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .icon-wa { background: #1f9d55; color: var(--white); }
 .icon-wa .wa-icon { width: 24px; height: 24px; }
 .form-head { grid-column: 1 / -1; }
+.hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-note.ok { color: #1f7a45; font-weight: 600; }
+.contact-form { position: relative; }
+.contact-form button:disabled { opacity: .6; cursor: wait; }
 .form-head h2 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
 .form-head p { font-size: 15px; }
 .field-label { font-family: var(--head); font-size: 13px; font-weight: 600; color: var(--ink); }
