@@ -1,0 +1,65 @@
+    <section class="page-hero" style="--hero-img:url('https://images.unsplash.com/photo-1758518731706-be5d5230e5a5?auto=format&amp;fit=crop&amp;w=2000&amp;q=80')">
+      <div class="wrap">
+        <p class="crumbs"><a href="index.html">Home</a> / <span>Contact</span></p>
+        <h1>Contact an HR Consultant in Ghana</h1>
+        <p class="page-hero-text">Tell us what you need. We reply within one working day.</p>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap contact-grid">
+        <ul class="contact-cards">
+          <li>
+            <span class="icon icon-sm">{{ICON_MAIL}}</span>
+            <div><h3>Email</h3><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
+          </li>
+          <li>
+            <span class="icon icon-sm">{{ICON_PHONE}}</span>
+            <div><h3>Phone</h3><a href="tel:{{PHONE_LINK}}">{{PHONE_DISPLAY}}</a></div>
+          </li>
+          <li>
+            <span class="icon icon-sm">{{ICON_PIN}}</span>
+            <div><h3>Location</h3><span>{{LOCATION}}</span></div>
+          </li>
+          <li>
+            <span class="icon icon-sm">{{ICON_CLOCK}}</span>
+            <div><h3>Hours</h3><span>{{HOURS}}</span></div>
+          </li>
+        </ul>
+
+        <form class="contact-form" id="contact-form" data-email="{{EMAIL}}" novalidate>
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="topic">Service</label>
+            <select id="topic" name="topic">
+              <option value="">Select a service</option>
+              <option>Startup HR Foundation</option>
+              <option>Outsourced HR Department</option>
+              <option>Recruitment &amp; Talent Acquisition</option>
+              <option>HR Audit &amp; Business Advisory</option>
+              <option>HR Policies &amp; Contracts</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+          <div class="form-foot full">
+            <button type="submit" class="btn btn-gold">Send Message <span aria-hidden="true">&rarr;</span></button>
+            <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
