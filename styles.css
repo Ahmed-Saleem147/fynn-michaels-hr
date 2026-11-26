@@ -211,7 +211,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   position: relative;
   background:
     linear-gradient(90deg, rgba(10,10,10,.88) 0%, rgba(10,10,10,.65) 45%, rgba(10,10,10,.15) 100%),
-    url("https://images.unsplash.com/photo-1739298061707-cefee19941b7?auto=format&fit=crop&w=2000&q=80") center / cover no-repeat;
+    url("https://images.unsplash.com/photo-1573167101669-476636b96cea?auto=format&fit=crop&w=2000&q=80") center / cover no-repeat;
   color: var(--white);
 }
 .hero-inner { padding: 140px var(--gutter) 150px; }
@@ -932,4 +932,34 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 
   .wa-float { right: 14px; bottom: 14px; padding: 12px; }
   .wa-float .wa-label { display: none; }
+}
+
+/* ---------- Her portrait ---------- */
+
+.about-img img.portrait-img,
+.service-side img.portrait-img { aspect-ratio: 4 / 5; object-position: center 15%; }
+
+.page-hero-portrait {
+  background:
+    linear-gradient(90deg, #121110 0%, rgba(18,17,16,.94) 42%, rgba(18,17,16,.35) 68%, rgba(18,17,16,0) 85%),
+    var(--hero-img) right 6% top 18% / 34% auto no-repeat,
+    #4a4642;
+  padding: 96px 0 100px;
+}
+
+@media (max-width: 1000px) {
+  .page-hero-portrait { background-size: auto, 46% auto, auto; }
+}
+
+@media (max-width: 640px) {
+  .service-side img.portrait-img { display: block; aspect-ratio: 4 / 4.2; border-radius: 6px 6px 0 0; }
+  .side-card { border-radius: 0 0 6px 6px; }
+  .about-img img.portrait-img { aspect-ratio: 4 / 4.2; }
+  .page-hero-portrait {
+    background:
+      linear-gradient(90deg, rgba(18,17,16,.95) 0%, rgba(18,17,16,.8) 55%, rgba(18,17,16,.25) 100%),
+      var(--hero-img) right -30px top 15% / auto 150% no-repeat,
+      #4a4642;
+    padding: 48px 0 50px;
+  }
 }

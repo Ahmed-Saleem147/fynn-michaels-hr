@@ -10,6 +10,7 @@ and commit the regenerated .html files in the project root.
 from datetime import date
 from pathlib import Path
 from urllib.parse import quote
+import hashlib
 import json
 import re
 
@@ -122,6 +123,11 @@ ICON_MAIL = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width
 ICON_PHONE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg>'
 ICON_PIN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>'
 ICON_CLOCK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'
+
+
+def asset_version(name):
+    """Short content hash so browsers fetch a new copy whenever the file changes."""
+    return hashlib.md5((ROOT / name).read_bytes()).hexdigest()[:8]
 
 
 def page_url(file):
@@ -313,12 +319,12 @@ def render(file, title, desc, group):
   <meta property="og:title" content="{plain_title}">
   <meta property="og:description" content="{desc}">
   <meta property="og:url" content="{url}">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1739298061707-cefee19941b7?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1573167101669-476636b96cea?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80">
   <meta name="theme-color" content="#111111">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Mulish:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v={asset_version('styles.css')}">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 {head_extra}</head>
 <body>
@@ -334,7 +340,7 @@ def render(file, title, desc, group):
     <span class="wa-label">WhatsApp us</span>
   </a>
 
-  <script src="script.js"></script>
+  <script src="script.js?v={asset_version('script.js')}"></script>
 </body>
 </html>
 """
