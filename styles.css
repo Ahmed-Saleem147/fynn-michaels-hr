@@ -803,31 +803,133 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 }
 
 @media (max-width: 640px) {
-  :root { --gutter: 16px; --section: 72px; }
-  .topbar-info a:nth-child(2) { display: none; }
-  .header-inner { height: 70px; }
-  .site-nav { top: 70px; }
-  .hero { background-position: 70% center; }
-  .hero-inner { padding: 90px var(--gutter) 100px; }
-  .cards, .reasons, .stats { grid-template-columns: 1fr; }
-  .circle-art { width: 280px; height: 280px; }
-  .circle { inset: 36px 0 0 36px; width: 224px; height: 224px; }
-  .circle-num { font-size: 80px; }
-  .circle-label { font-size: 16px; }
-  .dot-a { right: -10px; }
-  .dot-b { right: -20px; }
-  .about-img::before { inset: 14px -10px -14px 14px; }
-  .contact-form { grid-template-columns: 1fr; padding: 24px; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .cards-4, .mini-links, .includes { grid-template-columns: 1fr; }
-  .page-hero { padding: 64px 0 68px; }
-  .topbar-tagline { display: none; }
-  .steps { grid-template-columns: 1fr; row-gap: 28px; }
-  .steps li, .steps li:first-child, .steps li:nth-child(4) { border-left: 0; padding: 0 0 0 64px; position: relative; }
-  .steps .step-num { position: absolute; left: 0; top: 0; }
-  .partners, .guides, .mini-links-3 { grid-template-columns: 1fr; }
-  .borders-band { flex-direction: column; align-items: flex-start; padding: 24px; }
-  .guide { padding: 24px; }
-  .wa-float { right: 14px; bottom: 14px; padding: 14px; }
+  :root { --gutter: 16px; --section: 52px; }
+  body { font-size: 15px; line-height: 1.6; }
+
+  /* Header and hero */
+  .topbar-info a:nth-child(2), .topbar-tagline { display: none; }
+  .header-inner { height: 64px; }
+  .site-nav { top: 64px; }
+  .mark { width: 38px; height: 38px; font-size: 14px; }
+  .brand-name { font-size: 16px; }
+  .hero { background-position: 65% center; }
+  .hero-inner { padding: 56px var(--gutter) 60px; }
+  .hero h1 { font-size: 30px; margin: 10px 0 14px; }
+  .hero-text { font-size: 15px; }
+  .hero-actions { margin-top: 24px; gap: 10px; }
+  .hero-actions .btn { flex: 1; justify-content: center; padding: 13px 12px; font-size: 13px; }
+  .page-hero { padding: 44px 0 46px; }
+  .page-hero h1 { font-size: 26px; margin: 10px 0 8px; }
+  .page-hero-text { font-size: 15px; }
+
+  /* Section headings */
+  .section-head { margin-bottom: 28px; }
+  .section-head h2, .about-text h2, .service-main h2 { font-size: 24px; }
+  .eyebrow { font-size: 11px; }
+
+  /* Image + text blocks: shorter images */
+  .about-grid { gap: 28px; }
+  .about-img::before { display: none; }
+  .about-img img { aspect-ratio: 16 / 9; }
+  .about-text .btn { margin-top: 20px; }
+
+  /* Service cards: two per row, compact */
+  .cards, .cards-4 { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .card, .cards-4 .card { padding: 20px 12px; }
+  .icon { width: 48px; height: 48px; }
+  .icon svg { width: 22px; height: 22px; }
+  .card h3 { font-size: 14.5px; margin: 12px 0 6px; }
+  .card p { font-size: 12.5px; line-height: 1.45; }
+  .card-more { margin-top: 10px; font-size: 12px; }
+  .borders-band { flex-direction: row; align-items: center; gap: 14px; padding: 18px; margin-top: 12px; }
+  .borders-band .icon { width: 44px; height: 44px; }
+  .borders-band .icon svg { width: 20px; height: 20px; }
+  .borders-text strong { font-size: 15px; }
+  .borders-text span { font-size: 12.5px; line-height: 1.45; }
+  .borders-band .card-more { display: none; }
+
+  /* Why choose us: two per row */
+  .reasons { grid-template-columns: 1fr 1fr; gap: 22px 14px; }
+  .reasons li { flex-direction: column; gap: 6px; }
+  .reasons .num { width: auto; height: auto; font-size: 13px; }
+  .reasons .num::after { width: 20px; }
+  .reasons h3 { font-size: 14.5px; margin-bottom: 4px; }
+  .reasons p { font-size: 12.5px; line-height: 1.45; }
+
+  /* Approach: two per row */
+  .steps { grid-template-columns: 1fr 1fr; gap: 22px 14px; }
+  .steps li, .steps li:first-child, .steps li:nth-child(4) { border-left: 0; padding: 0; position: static; }
+  .steps .step-num { position: static; width: 36px; height: 36px; font-size: 12px; margin-bottom: 10px; }
+  .steps h3 { font-size: 15px; margin-bottom: 4px; }
+  .steps p { font-size: 12.5px; line-height: 1.45; }
+  .steps li:last-child { grid-column: 1 / -1; }
+
+  /* Service pages */
+  .service-grid { gap: 28px; }
+  .lead { font-size: 15px; }
+  .list-title { margin: 24px 0 12px; font-size: 16px; }
+  .includes { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .includes li { padding: 10px 10px 10px 34px; font-size: 12.5px; line-height: 1.35; }
+  .includes li::before { left: 10px; top: 11px; width: 16px; height: 16px; background-size: 9px; }
+  .ideal { margin-top: 20px; padding: 14px 16px; }
+  .ideal p { font-size: 14.5px; }
+  .service-side img { display: none; }
+  .side-card { border-radius: 6px; padding: 20px; }
+  .side-actions .btn { flex: 1; justify-content: center; padding: 12px 10px; font-size: 13px; }
+
+  /* Link grids */
+  .mini-links, .mini-links-3 { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .mini-links a { padding: 14px 12px; font-size: 12.5px; line-height: 1.35; }
+
+  /* About: partners and values */
+  .partners { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .partners li { padding: 12px 10px 12px 36px; font-size: 12.5px; }
+  .partners li::before { left: 11px; top: 14px; width: 16px; height: 16px; background-size: 9px; }
+  .partners-note { margin-top: 22px; font-size: 14.5px; }
+
+  /* Resource centre */
+  .guides { grid-template-columns: 1fr; gap: 16px; }
+  .guide { padding: 20px; gap: 10px; }
+  .guide h3 { font-size: 17px; }
+  .guide .ticks { gap: 6px; }
+  .guide .ticks li { font-size: 13.5px; }
+
+  /* FAQ */
+  .faq summary { padding: 15px 48px 15px 16px; font-size: 14.5px; }
+  .faq summary::after { right: 14px; }
+  .faq-a { padding: 0 16px 16px; font-size: 14px; }
+
+  /* Contact: details two per row, compact form */
+  .contact-grid { gap: 24px; }
+  .contact-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .contact-cards li { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px; }
+  .contact-cards li:nth-child(3) { grid-column: 1 / -1; flex-direction: row; align-items: center; }
+  .contact-grid > *, .contact-form .field { min-width: 0; }
+  .field input, .field select, .field textarea { width: 100%; min-width: 0; }
+  .icon-sm { width: 38px; height: 38px; }
+  .icon-sm svg, .icon-wa .wa-icon { width: 18px; height: 18px; }
+  .contact-cards h3 { font-size: 13px; }
+  .contact-cards a, .contact-cards span { font-size: 13px; word-break: break-word; }
+  .contact-form { grid-template-columns: 1fr 1fr; gap: 14px 10px; padding: 18px; }
+  .contact-form .field:has(#email), .contact-form .field:has(#phone) { grid-column: 1 / -1; }
+  .field label, .field-label { font-size: 12px; }
+  .field input, .field select { height: 44px; font-size: 14px; padding: 8px 10px; }
+  .form-head h2 { font-size: 20px; }
+  .radio-row { gap: 14px; }
+  .radio-row label { font-size: 14px; }
+  .form-foot .btn { width: 100%; justify-content: center; }
+
+  /* CTA band and footer */
+  .cta-band { padding: 36px 0; }
+  .cta-inner { gap: 16px; }
+  .cta-actions { width: 100%; }
+  .cta-actions .btn { flex: 1; justify-content: center; padding: 13px 10px; font-size: 13px; }
+  .site-footer { padding-top: 44px; font-size: 14px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px 16px; padding-bottom: 32px; }
+  .footer-grid > div:first-child, .footer-grid > div:last-child { grid-column: 1 / -1; }
+  .site-footer h4 { margin-bottom: 10px; }
+  .site-footer ul { gap: 7px; }
+
+  .wa-float { right: 14px; bottom: 14px; padding: 12px; }
   .wa-float .wa-label { display: none; }
 }
