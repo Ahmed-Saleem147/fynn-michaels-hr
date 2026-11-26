@@ -52,7 +52,7 @@ RESOURCES = [
 # file, SEO title, meta description, nav group
 PAGES = [
     ("index.html",
-     "HR Consulting &amp; Outsourcing for Startups in Ghana | Fynn-Micheals",
+     "HR Consulting &amp; Outsourcing for Startups | Fynn-Micheals",
      "Fynn-Micheals HR Solutions helps startups and small businesses in Ghana set up HR, "
      "outsource HR administration, recruit the right people and fix people-management problems.",
      "home"),
