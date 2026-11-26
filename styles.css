@@ -210,8 +210,9 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .hero {
   position: relative;
   background:
-    linear-gradient(90deg, rgba(10,10,10,.88) 0%, rgba(10,10,10,.65) 45%, rgba(10,10,10,.15) 100%),
-    url("https://images.unsplash.com/photo-1573167101669-476636b96cea?auto=format&fit=crop&w=2000&q=80") center / cover no-repeat;
+    linear-gradient(90deg, #121110 0%, rgba(18,17,16,.96) 36%, rgba(18,17,16,.5) 56%, rgba(18,17,16,0) 72%),
+    url("assets/fynn-micheals.jpg") right 7% bottom / auto 100% no-repeat,
+    #2f2822;
   color: var(--white);
 }
 .hero-inner { padding: 140px var(--gutter) 150px; }
@@ -962,4 +963,18 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
       #4a4642;
     padding: 48px 0 50px;
   }
+}
+
+/* Landing banner with her portrait */
+@media (max-width: 1000px) {
+  .hero { background-position: 0 0, right -40px bottom, 0 0; }
+}
+@media (max-width: 640px) {
+  .hero {
+    background:
+      linear-gradient(180deg, rgba(18,17,16,0) 0%, rgba(18,17,16,0) 30%, rgba(18,17,16,.85) 48%, #121110 60%),
+      url("assets/fynn-micheals.jpg") center top / 100% auto no-repeat,
+      #121110;
+  }
+  .hero-inner { padding-top: 290px; padding-bottom: 48px; }
 }

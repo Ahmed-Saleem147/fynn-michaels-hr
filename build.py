@@ -319,7 +319,7 @@ def render(file, title, desc, group):
   <meta property="og:title" content="{plain_title}">
   <meta property="og:description" content="{desc}">
   <meta property="og:url" content="{url}">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1573167101669-476636b96cea?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80">
+  <meta property="og:image" content="{SITE_URL}/assets/fynn-micheals.jpg">
   <meta name="theme-color" content="#111111">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
