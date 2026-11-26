@@ -112,8 +112,8 @@ PAGES = [
      "with us during enquiries and engagements.",
      "about"),
     ("contact.html",
-     "Contact an HR Consultant in Ghana | Fynn-Micheals",
-     "Speak to an HR consultant at Fynn-Micheals HR Solutions in Ghana. Call, WhatsApp, email "
+     "Contact an HR Consultant | Fynn-Micheals",
+     "Speak to an HR consultant at Fynn-Micheals HR Solutions. Call, WhatsApp, email "
      "or send an enquiry and we'll reply within one working day.",
      "contact"),
 ]
