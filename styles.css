@@ -978,3 +978,114 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   }
   .hero-inner { padding-top: 290px; padding-bottom: 48px; }
 }
+
+/* ---------- Careers ---------- */
+
+.jobs-list { display: grid; gap: 20px; }
+.jobs-empty { text-align: center; padding: 48px 24px; border: 1px dashed var(--line); border-radius: 6px; font-size: 16px; }
+.job-card {
+  display: flex; align-items: center; justify-content: space-between; gap: 28px;
+  padding: 28px 32px; border: 1px solid var(--line); border-radius: 6px; background: var(--white);
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.job-card:hover { border-color: var(--gold); box-shadow: var(--shadow); transform: translateY(-2px); }
+.job-card-main { min-width: 0; }
+.job-card h3 { font-size: 21px; font-weight: 700; margin: 4px 0 10px; }
+.job-card h3 a:hover { color: var(--gold-dark); }
+.job-card p { font-size: 15px; }
+.job-card .btn { flex: none; }
+.job-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-bottom: 12px; font-size: 14px; color: var(--ink); }
+.job-meta li { display: inline-flex; gap: 6px; }
+.job-meta span { color: var(--gold-dark); font-family: var(--head); font-weight: 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; padding-top: 2px; }
+.jobs-cv-note { margin-top: 40px; padding: 28px 32px; background: var(--tint); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; }
+.jobs-cv-note h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+
+.job-detail-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: start; }
+.job-detail h2 { font-size: clamp(26px, 3vw, 34px); font-weight: 700; margin: 10px 0 16px; }
+.back-link { display: inline-block; margin-bottom: 22px; font-size: 14px; }
+.job-detail .job-meta { padding-bottom: 20px; margin-bottom: 24px; border-bottom: 1px solid var(--line); }
+.job-body p + p, .job-body p + ul, .job-body ul + p { margin-top: 14px; }
+.job-body .list-title { margin: 28px 0 14px; }
+.job-list-bullets { grid-template-columns: 1fr; }
+.apply-form { position: sticky; top: 110px; }
+.apply-done h2 { color: #1f7a45; }
+.apply-done p + p { margin-top: 12px; }
+.field input[type="file"] { height: auto; padding: 10px; }
+.check-row { display: flex !important; gap: 10px; align-items: flex-start; font-family: var(--body) !important; font-weight: 500 !important; font-size: 14px !important; line-height: 1.5; cursor: pointer; }
+.check-row input { accent-color: var(--gold); width: 18px; height: 18px; flex: none; margin-top: 1px; }
+.field.invalid .check-row { color: #b2453a; }
+
+.center-text { text-align: center; }
+.cta-title { font-size: clamp(26px, 3vw, 34px); font-weight: 700; margin: 10px 0 14px; }
+.cta-center { justify-content: center; margin-top: 28px; }
+
+@media (max-width: 1000px) {
+  .job-detail-grid { grid-template-columns: 1fr; gap: 40px; }
+  .apply-form { position: static; }
+}
+@media (max-width: 640px) {
+  .job-card { flex-direction: column; align-items: stretch; padding: 22px 20px; gap: 16px; }
+  .job-card .btn { justify-content: center; }
+  .job-card h3 { font-size: 19px; }
+  .jobs-cv-note { padding: 22px 20px; }
+  .apply-form { grid-template-columns: 1fr; }
+}
+
+/* ---------- Admin ---------- */
+
+.admin-body { background: var(--tint); min-height: 100vh; }
+.admin-top { background: var(--black); color: #cfcfcf; }
+.admin-top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+.admin-top .brand-name { color: var(--white); }
+.admin-top-actions { display: flex; align-items: center; gap: 16px; font-size: 14px; }
+.admin-top-actions a:hover, .admin-link:hover { color: var(--gold); }
+.admin-link { background: none; border: 0; color: inherit; font: inherit; cursor: pointer; padding: 0; }
+.admin-main { padding: 40px 0 80px; }
+.admin-card { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 28px; }
+.admin-login { max-width: 420px; margin: 40px auto; }
+.admin-login h1 { font-size: 24px; margin-bottom: 6px; }
+.admin-login form { display: grid; gap: 16px; margin-top: 20px; }
+.admin-tabs { display: flex; gap: 6px; margin-bottom: 24px; border-bottom: 1px solid var(--line); }
+.admin-tabs button {
+  background: none; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px;
+  padding: 12px 16px; font-family: var(--head); font-weight: 600; font-size: 14px; color: var(--text); cursor: pointer;
+}
+.admin-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--gold); }
+.admin-tabs .count { display: inline-block; min-width: 20px; padding: 0 6px; margin-left: 6px; border-radius: 10px; background: var(--gold); color: var(--white); font-size: 11px; line-height: 20px; text-align: center; }
+.admin-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.admin-bar h2 { font-size: 22px; }
+.admin-bar select { height: 40px; border: 1px solid var(--line); border-radius: 4px; padding: 0 10px; font: inherit; font-size: 14px; background: var(--white); }
+.admin-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.admin-table th { text-align: left; font-family: var(--head); font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.admin-table td { padding: 14px 12px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink); }
+.admin-table tr:last-child td { border-bottom: 0; }
+.admin-table .sub { color: var(--muted); font-size: 13px; }
+.admin-table select { height: 34px; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; font: inherit; font-size: 13px; background: var(--white); }
+.row-actions { display: flex; gap: 12px; flex-wrap: wrap; white-space: nowrap; }
+.row-actions button, .row-actions a { background: none; border: 0; padding: 0; font: inherit; font-size: 13px; font-weight: 600; color: var(--gold-dark); cursor: pointer; }
+.row-actions button:hover, .row-actions a:hover { text-decoration: underline; }
+.row-actions .danger { color: #b2453a; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; background: var(--tint); color: var(--text); }
+.pill-open { background: #e3f3e9; color: #1f7a45; }
+.pill-draft { background: #f1f1f1; color: #6b6b6b; }
+.pill-closed, .pill-expired { background: #f7e4e1; color: #a03a2f; }
+.admin-empty { padding: 32px; text-align: center; color: var(--muted); }
+.admin-msg { margin-top: 12px; font-size: 14px; }
+.admin-msg.err { color: #b2453a; }
+.job-form { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.job-form .field textarea { min-height: 80px; }
+.job-form .hint { font-size: 12px; color: var(--muted); }
+.app-detail { background: var(--tint); }
+.app-detail td { padding: 18px 20px; }
+.app-detail dl { display: grid; grid-template-columns: 140px 1fr; gap: 8px 16px; margin: 0; }
+.app-detail dt { font-family: var(--head); font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+.app-detail dd { margin: 0; white-space: pre-wrap; word-break: break-word; }
+.app-detail textarea { width: 100%; min-height: 70px; font: inherit; font-size: 14px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; }
+.table-scroll { overflow-x: auto; }
+@media (max-width: 760px) {
+  .job-form { grid-template-columns: 1fr; }
+  .admin-card { padding: 18px; }
+  .app-detail dl { grid-template-columns: 1fr; }
+}
+.admin-tabs .count[hidden] { display: none; }
+.admin-top .mark { border: 1px solid var(--gold); color: var(--gold); }

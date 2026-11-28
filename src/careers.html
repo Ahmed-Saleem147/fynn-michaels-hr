@@ -1,0 +1,88 @@
+    <section class="page-hero" style="--hero-img:url('https://images.unsplash.com/photo-1653669486653-5f13827ea0ca?auto=format&amp;fit=crop&amp;w=2000&amp;q=80')">
+      <div class="wrap">
+        <p class="crumbs"><a href="index.html">Home</a> / <span id="crumb-current">Careers</span></p>
+        <h1 id="careers-title">Current Job Openings</h1>
+        <p class="page-hero-text" id="careers-sub">Roles we are recruiting for on behalf of our clients. Find one that fits and apply online.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <!-- List of openings (shown when no job is selected) -->
+        <div id="jobs-view">
+          <div class="jobs-list" id="jobs-list" aria-live="polite">
+            <p class="jobs-empty">Loading openings&hellip;</p>
+          </div>
+          <div class="jobs-cv-note">
+            <h3>Don't see the right role?</h3>
+            <p>Send your CV to <a href="mailto:{{EMAIL}}" class="text-link">{{EMAIL}}</a> and we'll keep you in mind for future openings.</p>
+          </div>
+        </div>
+
+        <!-- One job with the application form (careers.html?job=...) -->
+        <div id="job-view" class="job-detail-grid" hidden>
+          <article class="job-detail">
+            <a href="careers.html" class="text-link back-link">&larr; All openings</a>
+            <p class="eyebrow" id="job-company"></p>
+            <h2 id="job-title"></h2>
+            <ul class="job-meta" id="job-meta"></ul>
+            <div class="job-body" id="job-body"></div>
+          </article>
+
+          <form class="contact-form apply-form" id="apply-form" data-email="{{EMAIL}}" data-endpoint="{{FORM_ENDPOINT}}" novalidate>
+            <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="form-head full">
+              <h2>Apply for this role</h2>
+              <p>Fields marked * are required. Your details are treated in confidence.</p>
+            </div>
+            <div class="field full">
+              <label for="a-name">Full Name *</label>
+              <input id="a-name" name="full_name" type="text" autocomplete="name" maxlength="200" required>
+            </div>
+            <div class="field">
+              <label for="a-email">Email *</label>
+              <input id="a-email" name="email" type="email" autocomplete="email" maxlength="200" required>
+            </div>
+            <div class="field">
+              <label for="a-phone">Phone / WhatsApp *</label>
+              <input id="a-phone" name="phone" type="tel" autocomplete="tel" maxlength="40" required>
+            </div>
+            <div class="field">
+              <label for="a-location">Where are you based?</label>
+              <input id="a-location" name="location" type="text" autocomplete="address-level2" maxlength="200">
+            </div>
+            <div class="field">
+              <label for="a-linkedin">LinkedIn profile</label>
+              <input id="a-linkedin" name="linkedin" type="url" maxlength="300" placeholder="https://">
+            </div>
+            <div class="field full">
+              <label for="a-cv">CV (PDF or Word, up to 5 MB) *</label>
+              <input id="a-cv" name="cv" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+            </div>
+            <div class="field full">
+              <label for="a-note">Why are you a good fit? (optional)</label>
+              <textarea id="a-note" name="cover_note" rows="5" maxlength="5000"></textarea>
+            </div>
+            <div class="field full">
+              <label class="check-row"><input type="checkbox" id="a-consent" required> I agree that Fynn-Micheals HR Solutions may store my details and share them with the hiring employer for this role. *</label>
+            </div>
+            <div class="form-foot full">
+              <button type="submit" class="btn btn-gold">Submit Application <span aria-hidden="true">&rarr;</span></button>
+              <p class="form-note" id="apply-note" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tint">
+      <div class="wrap narrow-wrap center-text">
+        <p class="eyebrow">Employers</p>
+        <h2 class="cta-title">Hiring for your business?</h2>
+        <p>We plan the search, advertise the role, screen candidates and coordinate interviews for you.</p>
+        <div class="cta-actions cta-center">
+          <a href="recruitment.html" class="btn btn-dark">Our Recruitment Service</a>
+          <a href="contact.html" class="btn btn-gold">Send an Enquiry <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </section>

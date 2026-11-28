@@ -19,10 +19,33 @@ After editing, rebuild the pages and commit the result:
 
 Home, seven service pages (Startup HR, Outsourced HR, Recruitment, HR Audit, Performance
 Management, HR Policies & Documentation, HR Support Beyond Borders), About, Resource Centre,
-FAQs, Confidentiality and Contact. SEO titles and descriptions for each are in `build.py`.
+FAQs, Careers, Confidentiality and Contact. SEO titles and descriptions for each are in `build.py`.
 
 `sitemap.xml` and `robots.txt` are generated too. The FAQ page also gets FAQ structured data
 for search engines, built from its questions.
+
+## Careers and the admin page
+
+`careers.html` lists open jobs and takes applications (with a CV upload). The owner manages
+jobs and reads applications at `/admin.html`. Both use a Supabase project for the data:
+
+1. Create a free project at supabase.com.
+2. In its SQL Editor, paste and run `supabase/schema.sql`.
+3. Project Settings > API: copy the Project URL and the anon (publishable) key into
+   `SUPABASE_URL` and `SUPABASE_ANON_KEY` at the top of `build.py`, then `python build.py`.
+4. Authentication > Sign In / Providers: turn off "Allow new users to sign up".
+5. Authentication > Users > Add user: create the owner's login (email + password).
+6. Make that user an admin. In the SQL Editor run:
+
+       insert into public.admins (user_id)
+       select id from auth.users where email = 'OWNER-EMAIL-HERE';
+
+7. Authentication > URL Configuration: set the Site URL to the live domain and add
+   `https://fynn-michealshrsolutions.com/admin.html` to the redirect URLs (for password resets).
+
+Each new application is saved with its CV and the owner also gets an email notice through
+FormSubmit (the same service as the contact form), with a link to the admin page.
+Jobs disappear from the site automatically after their closing date.
 
 ## Preview locally
 

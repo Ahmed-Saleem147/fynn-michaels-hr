@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin | Fynn-Micheals HR Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Mulish:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=59e933d8">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body class="admin-body">
+  <header class="admin-top">
+    <div class="wrap">
+      <a href="index.html" class="brand">
+        <span class="mark" aria-hidden="true">FM</span>
+        <span class="brand-text">
+          <span class="brand-name">Fynn-Micheals</span>
+          <span class="brand-sub">Careers Admin</span>
+        </span>
+      </a>
+      <div class="admin-top-actions">
+        <a href="careers.html" target="_blank" rel="noopener">View careers page</a>
+        <button class="admin-link" id="sign-out" hidden>Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="wrap">
+
+      <!-- Shown while checking the session, or when config is missing -->
+      <div class="admin-card admin-login" id="status-view">
+        <p id="status-text">Loading&hellip;</p>
+      </div>
+
+      <!-- Sign in -->
+      <div class="admin-card admin-login" id="login-view" hidden>
+        <h1>Sign in</h1>
+        <p>Manage job listings and applications.</p>
+        <form id="login-form">
+          <div class="field">
+            <label for="l-email">Email</label>
+            <input id="l-email" type="email" autocomplete="username" required>
+          </div>
+          <div class="field">
+            <label for="l-pass">Password</label>
+            <input id="l-pass" type="password" autocomplete="current-password" required>
+          </div>
+          <button class="btn btn-gold" type="submit">Sign in</button>
+          <button class="admin-link text-link" type="button" id="forgot">Forgot password?</button>
+          <p class="admin-msg" id="login-msg" role="status"></p>
+        </form>
+      </div>
+
+      <!-- Set a new password (after following a reset link) -->
+      <div class="admin-card admin-login" id="reset-view" hidden>
+        <h1>Choose a new password</h1>
+        <form id="reset-form">
+          <div class="field">
+            <label for="r-pass">New password (at least 8 characters)</label>
+            <input id="r-pass" type="password" autocomplete="new-password" minlength="8" required>
+          </div>
+          <button class="btn btn-gold" type="submit">Save password</button>
+          <p class="admin-msg" id="reset-msg" role="status"></p>
+        </form>
+      </div>
+
+      <!-- Dashboard -->
+      <div id="app-view" hidden>
+        <div class="admin-tabs" role="tablist">
+          <button role="tab" id="tab-jobs" aria-selected="true" aria-controls="jobs-panel">Jobs</button>
+          <button role="tab" id="tab-apps" aria-selected="false" aria-controls="apps-panel">Applications <span class="count" id="new-count" hidden></span></button>
+        </div>
+
+        <section id="jobs-panel" role="tabpanel" aria-labelledby="tab-jobs">
+          <div class="admin-card" id="job-editor" hidden>
+            <div class="admin-bar"><h2 id="editor-title">Add a job</h2></div>
+            <form class="job-form" id="job-form" novalidate>
+              <div class="field full">
+                <label for="j-title">Job title *</label>
+                <input id="j-title" name="title" required maxlength="200">
+              </div>
+              <div class="field">
+                <label for="j-company">Employer / client</label>
+                <input id="j-company" name="company" maxlength="200" placeholder="Leave blank to keep confidential">
+              </div>
+              <div class="field">
+                <label for="j-location">Location</label>
+                <input id="j-location" name="location" maxlength="200" placeholder="e.g. Accra, Ghana or Remote">
+              </div>
+              <div class="field">
+                <label for="j-type">Employment type</label>
+                <select id="j-type" name="employment_type">
+                  <option value="">Select</option>
+                  <option>Full-time</option>
+                  <option>Part-time</option>
+                  <option>Contract</option>
+                  <option>Temporary</option>
+                  <option>Internship</option>
+                  <option>National Service</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="j-salary">Salary</label>
+                <input id="j-salary" name="salary" maxlength="120" placeholder="Optional, e.g. GHS 4,000 &ndash; 5,500 / month">
+              </div>
+              <div class="field">
+                <label for="j-closing">Closing date</label>
+                <input id="j-closing" name="closing_date" type="date">
+                <span class="hint">The job disappears from the site after this date.</span>
+              </div>
+              <div class="field">
+                <label for="j-status">Status</label>
+                <select id="j-status" name="status">
+                  <option value="open">Open (shown on the site)</option>
+                  <option value="draft">Draft (hidden)</option>
+                  <option value="closed">Closed (hidden)</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="j-summary">Short summary</label>
+                <textarea id="j-summary" name="summary" rows="2" maxlength="400" placeholder="One or two lines shown in the list of openings"></textarea>
+              </div>
+              <div class="field full">
+                <label for="j-desc">Full description</label>
+                <textarea id="j-desc" name="description" rows="12" placeholder="About the role&#10;&#10;Responsibilities:&#10;- First responsibility&#10;- Second responsibility&#10;&#10;Requirements:&#10;- First requirement"></textarea>
+                <span class="hint">Leave a blank line between paragraphs. Start a line with &ldquo;- &rdquo; for a bullet point. A short line ending in &ldquo;:&rdquo; becomes a heading.</span>
+              </div>
+              <div class="form-foot full">
+                <button class="btn btn-gold" type="submit" id="job-save">Save job</button>
+                <button class="btn btn-sm admin-link" type="button" id="job-cancel">Cancel</button>
+                <p class="admin-msg" id="job-msg" role="status"></p>
+              </div>
+            </form>
+          </div>
+
+          <div class="admin-card" id="jobs-card">
+            <div class="admin-bar">
+              <h2>Job listings</h2>
+              <button class="btn btn-gold btn-sm" id="add-job">+ Add a job</button>
+            </div>
+            <div class="table-scroll" id="jobs-table"></div>
+          </div>
+        </section>
+
+        <section id="apps-panel" role="tabpanel" aria-labelledby="tab-apps" hidden>
+          <div class="admin-card">
+            <div class="admin-bar">
+              <h2>Applications</h2>
+              <div>
+                <label class="sr-only" for="apps-filter">Show applications for</label>
+                <select id="apps-filter"><option value="">All jobs</option></select>
+                <label class="sr-only" for="apps-status">Status</label>
+                <select id="apps-status">
+                  <option value="">Any status</option>
+                  <option value="new">New</option>
+                  <option value="reviewing">Reviewing</option>
+                  <option value="shortlisted">Shortlisted</option>
+                  <option value="interview">Interview</option>
+                  <option value="rejected">Rejected</option>
+                  <option value="hired">Hired</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-scroll" id="apps-table"></div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js?v=d73c44e5"></script>
+  <script src="admin.js?v=a94e1825"></script>
+</body>
+</html>
